@@ -70,6 +70,15 @@ describe('YoutubeLinkToId', function() {
         expect(id).to.be.equal(idExpected[i]);
       });
     });
+
+    it('should handle no ids', function () {
+      var ids = linkToId.linkStringToIds('dfdksjf asdkf jasdkfjasdfjsdf34287rt34h xsqwenfdsf">DF{SDFSD*(Ff)fdf fdf }');
+      expect(ids.length).to.be.equal(0);
+    });
+
+    it('should blow up on null', function () {
+      expect(linkToId.linkStringToIds).to.throw('input string was empty');
+    });
   });
 
   describe('linksToEmbedTags', function () {
@@ -102,6 +111,41 @@ describe('YoutubeLinkToId', function() {
           '<iframe width="385" height="300" src="http://www.youtube.com/embed/' + id + '?feature=player_embedded" frameborder="0"></iframe>'
         );
       });
+    });
+
+    it('should handle no valid ids', function () {
+      var embeds = linkToId.linksToEmbedTags(
+        'asdjkf348ctruj <>>DF<Fhttp://dfj>>f,rd y158s7z 1432jhASD)&^' +
+        'F*DSF DFsd6f7sdaf jFD>"DF:Dfdhf" http://youtube.com/null'
+      );
+      expect(embeds.length).to.be.equal(0);
+    });
+
+  });
+
+
+
+  describe('extractLink', function () {
+    it('should extract a link from a string ', function () {
+      var linkToTest = 'hey check out this youtube video I found - https://www.youtube.com/watch?v=D9TpswDIBS8\n pretty cool huh?';
+      var links = linkToId.extractLink(linkToTest);
+      expect(links.length).to.be.equal(1);
+      expect(links[0]).to.be.equal('https://www.youtube.com/watch?v=D9TpswDIBS8');
+    });
+  });
+
+  describe('extractLinkForId', function () {
+    it('should find a link only for the given id', function () {
+      var linkToTest = 'hey check out this youtube video I found - https://www.youtube.com/watch?v=D9TpswDIBS8\n pretty cool huh?';
+      var links = linkToId.extractLinkForId(linkToTest, 'D9TpswDIBS8');
+      expect(links.length).to.be.equal(1);
+      expect(links[0]).to.be.equal('https://www.youtube.com/watch?v=D9TpswDIBS8');
+    });
+
+    it('should find a link only for the given id, not others', function () {
+      var linkToTest = 'hey check out this youtube video I found - https://www.youtube.com/watch?v=D9TpswDIBS8\n pretty cool huh?';
+      var links = linkToId.extractLinkForId(linkToTest, 'dhj78HJKd');
+      expect(links.length).to.be.equal(0);
     });
   });
 

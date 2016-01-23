@@ -1,16 +1,15 @@
 
 function YoutubeLinkToId() {
   var minLen = 5,
-    maxLen = 15;
+    maxLen = 20;
 
   function linkStringToIds(str) {
     // assumes all ids will match [a-z0-9-_]
     var matches,
       accumulator = [],
       re = /.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([a-z0-9-_]*).*/gi;
-    if(!str) {
+    if(!str)
       throw new Error('input string was empty');
-    }
 
     while((matches = re.exec(str)) !== null) {
         if (matches.index === re.lastIndex)
@@ -35,9 +34,28 @@ function YoutubeLinkToId() {
     });
   }
 
+  function extractLink(str) {
+    if(!str)
+      throw new Error('input string was empty');
+
+    var httpRe = /\b(https?:\/\/[\S]+)\b/gi,
+      matches = str.match(httpRe);
+
+    return matches || [];
+  }
+
+  function extractLinkForId(str, id) {
+    var links = extractLink(str);
+    return links.filter(function(link) {
+      return link.indexOf(id) !== -1;
+    });
+  }
+
   return {
     linkStringToIds: linkStringToIds,
-    linksToEmbedTags: linksToEmbedTags
+    linksToEmbedTags: linksToEmbedTags,
+    extractLink: extractLink,
+    extractLinkForId: extractLinkForId
   };
 }
 
