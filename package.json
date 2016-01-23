@@ -1,0 +1,30 @@
+{
+  "name": "youtube-link-to-id",
+  "version": "1.0.0",
+  "description": "Get a YouTube video ID from a strings containing YouTube link(s).",
+  "main": "youtube-link-to-id.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-r-d/youtube-link-to-id.git"
+  },
+  "keywords": [
+    "youtube"
+  ],
+  "author": "Aaron Decker <aaron@ard.ninja>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-r-d/youtube-link-to-id/issues"
+  },
+  "homepage": "https://github.com/a-r-d/youtube-link-to-id#readme"
+}
