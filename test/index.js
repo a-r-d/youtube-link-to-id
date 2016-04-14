@@ -63,8 +63,16 @@ describe('YoutubeLinkToId', function() {
       });
     });
 
-    it('should parse multiple ids at one time!', function () {
+    it('should parse multiple ids at one time when links are seperated by new line!', function () {
       var ids = linkToId.linkStringToIds(testLinks.join(' \n'));
+      expect(ids.length).to.be.equal(testLinks.length);
+      ids.forEach(function(id, i) {
+        expect(id).to.be.equal(idExpected[i]);
+      });
+    });
+
+    it('should parse multiple ids at one time when links are seperated by some text!', function () {
+      var ids = linkToId.linkStringToIds(testLinks.join(' test '));
       expect(ids.length).to.be.equal(testLinks.length);
       ids.forEach(function(id, i) {
         expect(id).to.be.equal(idExpected[i]);
