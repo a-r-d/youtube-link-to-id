@@ -7,7 +7,7 @@ function YoutubeLinkToId() {
     // assumes all ids will match [a-z0-9-_]
     var matches,
       accumulator = [],
-      re = /.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([a-z0-9-_]*).*/gi;
+      re = /.*?(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([a-z0-9-_]*).*?/gi;
     if(!str)
       throw new Error('input string was empty');
 
