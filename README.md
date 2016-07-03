@@ -43,9 +43,14 @@ var links = idGetter.extractLinkForId('some extra text https://www.youtube.com/w
 
 ## Tests
 
-This module has a test suite. Test it with mocha:
+This module has a test suite. Mocha installs as a dev dependency so you can run it as an npm script:
 
 ```
-npm install -g mocha
-mocha test
+npm run test
 ```
+
+
+## Changelog:
+
+#### 7/2/2016 - v1.0.2
+ - Merged pr to fix this bug: [only one id is returned](https://github.com/a-r-d/youtube-link-to-id/issues/1)
