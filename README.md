@@ -1,4 +1,6 @@
 # youtube-link-to-id
+[![Build Status](https://travis-ci.org/a-r-d/youtube-link-to-id.svg?branch=master)](https://travis-ci.org/a-r-d/youtube-link-to-id) [![npm version](https://badge.fury.io/js/youtube-link-to-id.svg)](https://badge.fury.io/js/youtube-link-to-id)
+
 Get a YouTube video ID from a strings containing YouTube link(s).
 
 ## About
